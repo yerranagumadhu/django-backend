@@ -4,8 +4,6 @@ pip install djangorestframework
 http://127.0.0.1:8000/employee/list/
 http://127.0.0.1:8000/employee/api/107/
 
-git remote add origin https://github.com/yerranagumadhu/django-backend.git
-
 
 .\.venv\Scripts\activate.bat
 
@@ -24,3 +22,16 @@ python manage.py inspectdb employee > register/models.py
 'PASSWORD' : 'Madhu@437',
 'HOST': 'localhost',
 'PORT': '5432',
+
+git init
+git add .
+git commit -m "Initial commit: Django project setup"
+
+git remote add origin https://github.com/yerranagumadhu/django-backend.git
+git branch -M main
+git push -u origin main
+git pull origin main
+
+
+git checkout -b development
+git push -u origin development
