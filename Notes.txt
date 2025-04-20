@@ -1,0 +1,26 @@
+https://github.com/CodAffection/Django-CRUD-Operations
+pip install djangorestframework
+
+http://127.0.0.1:8000/employee/list/
+http://127.0.0.1:8000/employee/api/107/
+
+git remote add origin https://github.com/yerranagumadhu/django-backend.git
+
+
+.\.venv\Scripts\activate.bat
+
+python manage.py startapp register
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+python manage.py inspectdb > employee_register/models.py
+python manage.py inspectdb employee > register/models.py
+
+
+'ENGINE': 'django.db.backends.postgresql',        
+'NAME': 'postgres',
+'USER': 'postgres',
+'PASSWORD' : 'Madhu@437',
+'HOST': 'localhost',
+'PORT': '5432',

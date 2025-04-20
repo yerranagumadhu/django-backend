@@ -1,0 +1,17 @@
+{% extends 'employee_register/base.html' %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete <strong>{{ employee.first_name }} {{ employee.last_name }}</strong>?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">Yes, Delete</button>
+        </form>
+
+        <div class="form-footer">
+            <a href="{% url 'employee_list' %}">Cancel</a>
+        </div>
+    </div>
+{% endblock %}

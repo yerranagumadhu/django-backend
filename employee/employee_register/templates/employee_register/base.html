@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Employee Management{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        }
+
+        header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        }
+
+        .container {
+        padding: 20px;
+        }
+
+        .form-container {
+        max-width: 500px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        select {
+        width: 100%;
+        padding: 10px 14px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        background-color: #fafafa;
+        }
+
+        button {
+        display: inline-block;
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+        background-color: #45a049;
+        }
+
+        .delete-button {
+        background-color: #f44336;
+        }
+
+        .delete-button:hover {
+        background-color: #d7372f;
+        }
+
+        .form-footer {
+        margin-top: 10px;
+        text-align: center;
+        }
+
+        .form-footer a {
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        }
+
+        .form-footer a:hover {
+        text-decoration: underline;
+        }
+
+        footer {
+        text-align: center;
+        padding: 15px;
+        margin-top: 40px;
+        color: #777;
+        font-size: 14px;
+        }
+    </style>
+    </head>
+    <body>
+
+    <header>
+        Employee Management System
+    </header>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        &copy; {{ now|date:"Y" }} Your Company Name
+    </footer>
+
+</body>
+</html>
