@@ -17,19 +17,48 @@ This is a Django-based backend application built for managing employee-related d
 
 ## 🗂️ Project Structure
 
-```
-├── Backend/
-│   ├── manage.py
-│   ├── backend/                # Django project settings
-│   ├── employees/              # Main app
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── serializers.py
-│   │   ├── urls.py
-│   │   └── templates/
-│   ├── static/
-│   └── templates/
-```
+# Django Employee Register with SAML Authentication
+
+## Project Structure
+
+```bash
+project_name/
+├── employee_register/                       # Main Django app for employee registration
+│   ├── migrations/                          # Database migration files
+│   ├── templates/                           # HTML files for rendering views
+│   │   ├── employee_list.html               # Employee list page template
+│   │   ├── logout_page.html                 # Custom logout page template
+│   ├── __init__.py
+│   ├── admin.py                             # Django admin panel configuration
+│   ├── apps.py                              # Django app configuration
+│   ├── models.py                            # Database models for employee data
+│   ├── tests.py                             # Unit tests
+│   ├── views.py                             # Views for handling the logic
+│   ├── urls.py                              # URL routing for the employee app
+│   ├── forms.py                             # Forms for handling user inputs (optional)
+│   └── static/                              # Static files (CSS, JS, Images)
+│       ├── css/                             # Stylesheets
+│       ├── js/                              # JavaScript files (optional)
+│       └── images/                          # Image files (optional)
+├── saml_auth/                               # App handling SAML authentication
+│   ├── __init__.py
+│   ├── views.py                             # SAML authentication views (login, logout)
+│   ├── urls.py                              # URL routing for SAML-related routes
+│   ├── metadata.py                          # Metadata for the SAML authentication
+│   ├── saml_settings.py                     # SAML settings (SP and IdP details)
+├── employee/                                # Project directory (main root)
+│   ├── OKTA/                                # Store Okta certificates or configuration here
+│   │   └── okta.cert                        # Okta x509 certificate
+│   ├── __init__.py
+│   ├── manage.py                            # Django manage script
+│   ├── settings.py                          # Django settings file
+│   ├── urls.py                              # URL routing for the main project
+│   ├── wsgi.py                              # WSGI configuration
+│   └── asgi.py                              # ASGI configuration (for async support)
+├── .gitignore                               # Git ignore file
+├── requirements.txt                        # List of project dependencies
+└── README.md                                # GitHub readme file
+
 
 ## ⚙️ Setup Instructions
 
