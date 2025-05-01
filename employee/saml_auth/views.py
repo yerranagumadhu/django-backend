@@ -6,7 +6,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from onelogin.saml2.auth import OneLogin_Saml2_Auth
 from .saml_settings import get_saml_settings
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, logout
+from django.urls import reverse
 
 def prepare_django_request(request):
     return {
@@ -35,14 +36,34 @@ def acs_view(request):
         email = auth.get_nameid()
         User = get_user_model()
         user, _ = User.objects.get_or_create(username=email, defaults={'email': email})
+        attributes = auth.get_attributes()
+        authemail = attributes.get('email', [None])[0]
+        first_name = attributes.get('firstName', [None])[0]
+        last_name = attributes.get('lastName', [None])[0]
+        print(f"Attributes received: {attributes}")
+        if authemail and first_name and last_name:
+            user.email = authemail
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+        else:
+            print("Missing required attributes from SAML response.")
         login(request, user)
         return redirect('/employee/')
     else:
         return render(request, 'saml_auth/login_error.html', {'errors': errors})
 
 def sso_logout(request):
+    
     auth = init_saml_auth(request)
-    return redirect(auth.logout())
+    # Perform the logout and get the logout URL
+    logout_url = auth.logout()    
+    # If a URL is returned, we can redirect the user to Okta's SSO logout endpoint
+    # if logout_url:
+    #     return redirect(logout_url)
+    
+    # If no URL is returned (or after logging out), redirect to the home page
+    return redirect('logout_page')# Or any page you want after logout
 
 def metadata_view(request):
     from onelogin.saml2.metadata import OneLogin_Saml2_Metadata
