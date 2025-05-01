@@ -16,6 +16,7 @@ def get_saml_settings():
                 'url': 'http://localhost:8000/sso/saml/logout/',
                 'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             },
+            'NameIDFormat': 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',  # ✅ Required
             'x509cert': '',
             'privateKey': '',
         },
@@ -26,7 +27,7 @@ def get_saml_settings():
                 'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             },
             'singleLogoutService': {
-                'url': 'https://dev-53717893.okta.com/app/dev-53717893_djangosaml_1/exkohf5ub1PaOtCuN5d7/slo/saml',
+                'url': 'https://dev-53717893.okta.com',
                 'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
             },
             'x509cert': open(os.path.join(BASE_DIR, 'employee/OKTA/okta.cert')).read(),

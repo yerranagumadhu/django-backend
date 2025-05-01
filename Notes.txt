@@ -1,6 +1,8 @@
 https://github.com/CodAffection/Django-CRUD-Operations
 pip install djangorestframework
 
+http://localhost:8000/employee/
+
 http://127.0.0.1:8000/employee/list/
 http://127.0.0.1:8000/employee/api/107/
 

@@ -6,6 +6,7 @@ from .serializers import EmployeeDetailSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 
 # Create your views here.
 # List all the employees in the database
@@ -123,3 +124,6 @@ class EmployeeDetailAPIView(APIView):
             return Response(serializer.data)
         except Employee.DoesNotExist:
             return Response({'error': 'Employee not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+def logout_page(request):
+    return render(request, 'employee_register/logout_page.html')
