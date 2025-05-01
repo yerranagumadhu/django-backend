@@ -4,8 +4,15 @@ pip install djangorestframework
 http://127.0.0.1:8000/employee/list/
 http://127.0.0.1:8000/employee/api/107/
 
+git remote add origin https://github.com/yerranagumadhu/django-backend.git
+
+git remote add origin https://github.com/yerranagumadhu/django-backend.git
+git branch -M main
+git push -u origin main
+
 
 .\.venv\Scripts\activate.bat
+& c:/Users/lucky/projects/Django/Backend/.venv/Scripts/Activate.ps1
 
 python manage.py startapp register
 
@@ -23,15 +30,35 @@ python manage.py inspectdb employee > register/models.py
 'HOST': 'localhost',
 'PORT': '5432',
 
-git init
-git add .
-git commit -m "Initial commit: Django project setup"
 
-git remote add origin https://github.com/yerranagumadhu/django-backend.git
-git branch -M main
-git push -u origin main
-git pull origin main
+https://dev-53717893-admin.okta.com/admin/dashboard
+yerranagumadhu@happi2learn.com
+Madhu@202504
+maother maiden name => rama
+
+https://happi2learn.okta.com
+https://dev-53717893.okta.com/app/exkohf5ub1PaOtCuN5d7/sso/saml/metadata
 
 
-git checkout -b development
-git push -u origin development
+# SAML Settings
+SAML_IDP_ENTITY_ID = 'http://www.okta.com/exkohf5ub1PaOtCuN5d7'  # Use your Okta IDP Entity ID
+SAML_SP_ENTITY_ID = 'http://localhost:8000/sso/saml/metadata/'  # The URL of your Django SP metadata endpoint
+SAML_SP_ACS_URL = 'http://localhost:8000/sso/saml/acs/'  # The ACS (Assertion Consumer Service) URL of your Django app
+SAML_SP_METADATA_URL = 'http://localhost:8000/sso/saml/metadata/'  # The SP metadata URL that Okta will use
+SAML_DEFAULT_BINDING = 'HTTP-Redirect'
+
+# URL for the SSO (Single Sign-On) endpoint
+SAML_IDP_SSO_URL = 'https://dev-53717893.okta.com/app/dev-53717893_djangosaml_1/exkohf5ub1PaOtCuN5d7/sso/saml'  # Okta SSO URL
+
+# Path to your Okta certificate (can be found in Okta Admin console under the SAML settings)
+SAML_IDP_CERT_FILE = 'employee\OKTA\okta.cert'
+
+# URL to the IdP metadata file (if required)
+SAML_IDP_METADATA_URL = 'https://dev-53717893.okta.com/app/exkohf5ub1PaOtCuN5d7/sso/saml/metadata'
+
+# Optional: configure additional settings like assertion attribute mappings
+SAML_ATTRIBUTE_MAPPING = {
+    'email': 'User.email',
+    'firstName': 'User.firstName',
+    'lastName': 'User.lastName',
+}
