@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <p>Click the button below to log in with Okta.</p>
+    <form method="get" action="{% url 'saml2_auth:login' %}">
+        {% csrf_token %}
+        <button type="submit">Login with Okta</button>
+    </form>
+</body>
+</html>
