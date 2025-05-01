@@ -58,7 +58,7 @@ project_name/
 ├── .gitignore                               # Git ignore file
 ├── requirements.txt                        # List of project dependencies
 └── README.md                                # GitHub readme file
-
+```
 
 ## ⚙️ Setup Instructions
 
