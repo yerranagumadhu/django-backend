@@ -8,6 +8,7 @@ from onelogin.saml2.auth import OneLogin_Saml2_Auth
 from .saml_settings import get_saml_settings
 from django.contrib.auth import login, get_user_model, logout
 from django.urls import reverse
+from django.http import JsonResponse
 
 def prepare_django_request(request):
     return {
@@ -27,7 +28,11 @@ def sso_login(request):
         # Already logged in, stay on the current page
         return redirect(request.GET.get('next', '/'))  # or use request.path
     auth = init_saml_auth(request)
-    return redirect(auth.login())
+    saml_request_url = auth.login()
+
+    # Properly pass RelayState to auth.login()
+    relay_state = request.GET.get("RelayState", "http://localhost:3000")
+    return redirect(auth.login(return_to=relay_state))
 
 @csrf_exempt
 def acs_view(request):
@@ -51,11 +56,23 @@ def acs_view(request):
             user.save()
         else:
             print("Missing required attributes from SAML response.")
+        
+        # Log the user in
         login(request, user)
-        return redirect('/employee/')
-    else:
-        return render(request, 'saml_auth/login_error.html', {'errors': errors})
 
+        # Get RelayState URL from the request or fallback to 'next' if missing
+        relay_state = request.POST.get('RelayState')  # This will always contain the original URL from the React app
+        print(f"RelayState received: {relay_state}")
+        if not relay_state:
+            relay_state = request.GET.get('next', '/employee/')  # fallback URL if no RelayState or next param
+        
+        # Redirect to the RelayState URL (employee details page) or fallback
+        return redirect(relay_state)
+    else:
+        # Handle SAML errors if any
+        return render(request, 'saml_auth/login_error.html', {'errors': errors})
+    
+    
 def sso_logout(request):
     
     auth = init_saml_auth(request)
@@ -73,3 +90,11 @@ def metadata_view(request):
     from onelogin.saml2.metadata import OneLogin_Saml2_Metadata
     metadata = OneLogin_Saml2_Metadata.builder(get_saml_settings()['sp'], get_saml_settings()['idp'])
     return HttpResponse(metadata, content_type="text/xml")
+
+
+
+def check_auth(request):
+    if request.user.is_authenticated:
+        return JsonResponse({'authenticated': True, 'username': request.user.username})
+    else:
+        return JsonResponse({'authenticated': False}, status=401)

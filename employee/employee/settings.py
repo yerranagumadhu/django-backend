@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',  # CORS headers for cross-origin requests
     'rest_framework',
     'employee_register',
     'saml_auth',
@@ -50,11 +51,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'employee.middleware.SAMLLoginRequiredMiddleware',  # ← custom middleware
     'employee_register.middleware.SAMLLoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'employee.urls'
+
 
 TEMPLATES = [
     {
@@ -148,3 +151,13 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
+
+# CORS_ALLOW_ALL_ORIGINS = True # Allow all origins for CORS requests
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # Your React app URL
+    "http://localhost:3001", # Add others if needed
+]
+
+CORS_ALLOW_CREDENTIALS = True  # Important for sessions/cookies

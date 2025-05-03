@@ -136,7 +136,7 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Employee(models.Model):
+class Employee(models.Model):    
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)

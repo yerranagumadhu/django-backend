@@ -43,6 +43,7 @@
     <h2 style="text-align:center;">Employee List</h2>
     <table>
         <tr>
+            <th>Emp ID</th> <!-- New column -->
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -53,6 +54,7 @@
         </tr>
         {% for emp in employees %}
         <tr>
+            <td>{{ emp.id }}</td> <!-- Display empID -->
             <td>{{ emp.first_name }}</td>
             <td>{{ emp.last_name }}</td>
             <td>{{ emp.email }}</td>

@@ -17,7 +17,7 @@ class SAMLLoginRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated and request.path.startswith('/employee/list/'):
+        if not request.user.is_authenticated and request.path.startswith('/employee/'):
             print(f"User not authenticated. Redirecting to SAML login for path: {request.path}")
             return redirect('/sso/saml/login/')
         return self.get_response(request)
