@@ -64,3 +64,13 @@ SAML_ATTRIBUTE_MAPPING = {
     'firstName': 'User.firstName',
     'lastName': 'User.lastName',
 }
+
+
+I would like to help me with the react APP
+1. Build 2 react apps
+2. 1st react app with search functinality 
+3. 2nd react app to dispaly all the details realted to a employee.
+4. when ever the user input the emp ID in 1st app and clicks the search button need to open the emp details in a new TAB with 
+   2nd app
+5. When ever the user opens the 2nd app in another tab we don't want to show him another EMP details
+   

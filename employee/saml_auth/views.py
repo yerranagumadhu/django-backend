@@ -23,6 +23,9 @@ def init_saml_auth(request):
     return OneLogin_Saml2_Auth(req, get_saml_settings())
 
 def sso_login(request):
+    if request.user.is_authenticated:
+        # Already logged in, stay on the current page
+        return redirect(request.GET.get('next', '/'))  # or use request.path
     auth = init_saml_auth(request)
     return redirect(auth.login())
 
@@ -58,6 +61,7 @@ def sso_logout(request):
     auth = init_saml_auth(request)
     # Perform the logout and get the logout URL
     logout_url = auth.logout()    
+    print(f"Logout URL: {logout_url}")
     # If a URL is returned, we can redirect the user to Okta's SSO logout endpoint
     # if logout_url:
     #     return redirect(logout_url)
