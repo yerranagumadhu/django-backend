@@ -166,6 +166,8 @@ LOGGING = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # Your React app URL
     "http://localhost:3001", # Add others if needed
+    "http://localhost:3002", # Add others if needed
+    "http://localhost:3003", # Add others if needed
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # Important for sessions/cookies
