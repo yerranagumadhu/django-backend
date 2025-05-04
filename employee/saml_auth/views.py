@@ -80,8 +80,8 @@ def sso_logout(request):
     logout_url = auth.logout()    
     print(f"Logout URL: {logout_url}")
     # If a URL is returned, we can redirect the user to Okta's SSO logout endpoint
-    # if logout_url:
-    #     return redirect(logout_url)
+    if logout_url:
+        return redirect(logout_url)
     
     # If no URL is returned (or after logging out), redirect to the home page
     return redirect('logout_page')# Or any page you want after logout
