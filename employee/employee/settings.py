@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  os.getenv('SECRET_KEY', '')  #'django-insecure-uwp_-)zz!vt&%hrp_#_ci^c@x9c)t*-(apk_^_8f=td(nx0eki'
+# SECRET_KEY =  os.getenv('SECRET_KEY', '')  #'django-insecure-uwp_-)zz!vt&%hrp_#_ci^c@x9c)t*-(apk_^_8f=td(nx0eki'
+SECRET_KEY =  'django-insecure-uwp_-)zz!vt&%hrp_#_ci^c@x9c)t*-(apk_^_8f=td(nx0eki'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '') #True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # 
 
 # Application definition
@@ -90,8 +91,8 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD' : 'Madhu@437',
-        'HOST': 'host.docker.internal',  
-        #'HOST': 'localhost',
+        # 'HOST': 'host.docker.internal',  
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

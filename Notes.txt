@@ -74,3 +74,8 @@ I would like to help me with the react APP
    2nd app
 5. When ever the user opens the 2nd app in another tab we don't want to show him another EMP details
    
+
+npm uninstall react react-dom
+npm install react@18 react-dom@18
+
+npm install devextreme devextreme-react@22.2.5

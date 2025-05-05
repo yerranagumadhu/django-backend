@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Employee
 from django.http import JsonResponse
 from .forms import EmployeeForm # Import the EmployeeForm if you want to use it in your views
-from .serializers import EmployeeDetailSerializer
+from .serializers import EmployeeDetailSerializer, EmployeeSerializer
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render
@@ -127,3 +128,22 @@ class EmployeeDetailAPIView(APIView):
         
 def logout_page(request):
     return render(request, 'employee_register/logout_page.html')
+
+
+
+@api_view(['GET'])
+def employee_list_api(request):
+    employees = Employee.objects.all()
+    print(f"Number of employees fetched: {employees.count()}")
+    serializer = EmployeeSerializer(employees, many=True)
+    return Response(serializer.data)
+
+# class EmployeeListAPIView(APIView):
+#     def get(self, request):
+#         try:
+#             employees = Employee.objects.all()
+#             print(f"Number of employees fetched: {employees.count()}")
+#             serializer = EmployeeSerializer(employees, many=True)
+#             return Response(serializer.data)
+#         except Employee.DoesNotExist:
+#             return Response({'error': 'Employee not found.'}, status=status.HTTP_404_NOT_FOUND)

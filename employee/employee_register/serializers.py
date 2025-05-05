@@ -37,3 +37,7 @@ class EmployeeDetailSerializer(serializers.ModelSerializer):
     def get_department(self, obj):
         return DepartmentSerializer(obj.department_0).data
 
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'  # or list specific fields like ['id', 'first_name', 'last_name', ...]
